@@ -104,7 +104,7 @@ std::string Interface::getDatabaseName() {
     do { // Evitamos dos bases de datos con el mismo nombre para evitar problemas a la hora de crear los archivos
         std::cout << "Introduce el nombre de la nueva base de datos: " << std::endl;
         std::getline(std::cin, name);
-        if (isNewName(name)) {
+        if (isNewName(controller_->databases_, name)) {
             newName = true;
         } else {
             std::cout << "Ya existe una base de datos con este nombre. Prueba otra vez" << std::endl;
@@ -114,27 +114,10 @@ std::string Interface::getDatabaseName() {
     return name;
 }
 
-bool Interface::isNewName(std::string name) {
-    bool isNew = true;
-
-    // Pasamos ambos string a comparar a minusculas para compararlos correctamente
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-    for (unsigned int i = 0; i < controller_->databases_.size(); i++) {
-        std::string dbName = controller_->databases_[i].getDatabaseName();
-        std::transform(dbName.begin(), dbName.end(), dbName.begin(), ::tolower);
-        if (name == dbName) {
-            isNew = false;
-            break;
-        }
-    }
-
-    return isNew;
-}
-
 DataTemplate Interface::getDatabaseTemplate() {
     DataTemplate ds;
 
-    ds.setNumFields(getOption("Introduce el numero de campos:"));
+    ds.setNumFields(getOption("Introduce el numero de campos:", 1, 9));
 
     std::string name;
     int len;

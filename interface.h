@@ -13,7 +13,6 @@ class Interface {
 private:
     int getOption(std::string msg, int minLimit, int maxLimit);
     int getOption(std::string msg);
-    bool isNewName(std::string name);
 
     int selectDatabase();
 

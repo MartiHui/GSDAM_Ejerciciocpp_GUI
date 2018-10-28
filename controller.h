@@ -21,5 +21,6 @@ public:
     void getDatabases();
     void saveDatabase(Database& database);
     void createDatabase(std::string databaseName, DataTemplate dataTemplate);
+    void createDatabase(Database db);
 };
 #endif // CONTROLLER_H

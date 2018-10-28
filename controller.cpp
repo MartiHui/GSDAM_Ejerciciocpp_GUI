@@ -78,3 +78,8 @@ void Controller::createDatabase(std::string databaseName, DataTemplate dataTempl
     saveDatabase(db);
     databases_.push_back(db);
 }
+
+void Controller::createDatabase(Database db) {
+    saveDatabase(db);
+    databases_.push_back(db);
+}
