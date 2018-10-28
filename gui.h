@@ -2,7 +2,11 @@
 #define GUI_H
 
 #include <QMainWindow>
+#include <QVector>
+
 #include "controller.h"
+#include "datatemplate.h"
+#include "data.h"
 
 namespace Ui {
 class GUI;
@@ -21,10 +25,19 @@ public:
 private slots:
     void on_selectDatabaseBtn_clicked();
 
+    void on_newEntryBtn_clicked();
+
+    void on_showEntriesBtn_clicked();
+
+    void on_searchEntryBtn_clicked();
+
 private:
     Ui::GUI *ui;
 
     void displayDbData();
+    void displayEntries(QVector<Data> &entries);
+    void displayAllEntries();
+    void noDatabaseAlert();
 };
 
 #endif // GUI_H

@@ -34,7 +34,10 @@ SOURCES += \
     interface.cpp \
     dbselector.cpp \
     dbcreator.cpp \
-    dimensions.cpp
+    dimensions.cpp \
+    m_utilities.cpp \
+    entrycreator.cpp \
+    searchentry.cpp
 
 HEADERS += \
         gui.h \
@@ -46,12 +49,16 @@ HEADERS += \
     m_utilities.h \
     dbselector.h \
     dbcreator.h \
-    dimensions.h
+    dimensions.h \
+    entrycreator.h \
+    searchentry.h
 
 FORMS += \
         gui.ui \
     dbselector.ui \
-    dbcreator.ui
+    dbcreator.ui \
+    entrycreator.ui \
+    searchentry.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

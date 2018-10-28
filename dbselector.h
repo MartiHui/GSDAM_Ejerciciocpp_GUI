@@ -21,11 +21,10 @@ public:
 
     int getIdx();
 
+protected:
+    void accept() override;
+
 private slots:
-    void on_buttonBox_rejected();
-
-    void on_buttonBox_accepted();
-
     void on_addDbBtn_clicked();
 
 private:

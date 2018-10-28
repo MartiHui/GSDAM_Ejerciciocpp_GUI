@@ -31,15 +31,9 @@ void DbSelector::fillCmb() {
     }
 }
 
-void DbSelector::on_buttonBox_rejected()
-{
-    close();
-}
-
-void DbSelector::on_buttonBox_accepted()
-{
+void DbSelector::accept() {
     idx_ = ui->dbListCmb->currentIndex();
-    close();
+    QDialog::accept();
 }
 
 int DbSelector::getIdx() {
@@ -52,7 +46,7 @@ void DbSelector::on_addDbBtn_clicked()
     dbCreator->show();
     if (dbCreator->exec()) {
         Database db = dbCreator->getDatabase();
-        controller_->saveDatabase(db);
+        controller_->createDatabase(db);
     }
     delete dbCreator;
 

@@ -24,12 +24,11 @@ public:
 
     Database getDatabase();
 
+protected:
+    void accept() override;
+
 private slots:
     void on_numFields_valueChanged(int arg1);
-
-    void on_buttonBox_rejected();
-
-    void on_buttonBox_accepted();
 
 private:
     Ui::DbCreator *ui;

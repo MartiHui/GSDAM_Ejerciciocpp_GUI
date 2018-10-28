@@ -3,6 +3,7 @@
 #include <QSpinBox>
 #include <QDebug>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 #include "dbcreator.h"
 #include "ui_dbcreator.h"
@@ -60,7 +61,7 @@ void DbCreator::generateFieldsForm(int numFields) {
         QSpinBox *spinBox = new QSpinBox(container);
         spinBox->setGeometry(spinBoxDim.posX_, spinBoxDim.getPosY(i), spinBoxDim.width_, spinBoxDim.height_);
         spinBox->setMinimum(1);
-        spinBox->setMaximum(9);
+        spinBox->setMaximum(50);
         spinBoxList_.push_back(spinBox);
     }
 
@@ -81,16 +82,13 @@ Database DbCreator::getDatabase() {
     db.setDatabaseName(ui->dbName->text().toStdString());
 
     int num = ui->numFields->value();
+    dt.setNumFields(num);
     for (int i = 0; i < num; i++) {
         dt.addField(lineEditList_[i]->text().toStdString(), spinBoxList_[i]->value());
     }
     db.setTemplate(dt);
 
     return db;
-}
-void DbCreator::on_buttonBox_rejected()
-{
-    close();
 }
 
 bool DbCreator::fieldsCorrect() {
@@ -105,18 +103,20 @@ bool DbCreator::fieldsCorrect() {
     return allCorrect;
 }
 
-void DbCreator::on_buttonBox_accepted()
-{
-    if(!isNewName(*databases_, ui->dbName->text().toStdString())
-            || ui->dbName->text() == "") {
+void DbCreator::accept() {
+    if(!isNewName(*databases_, ui->dbName->text().toStdString())) {
         QMessageBox msgBox;
         msgBox.setText("Ya existe una base de datos con este nombre.");
+        msgBox.exec();
+    } else if (ui->dbName->text() == "") {
+        QMessageBox msgBox;
+        msgBox.setText("Intorduce el nombre de la base de datos.");
         msgBox.exec();
     } else if (!fieldsCorrect()) {
         QMessageBox msgBox;
         msgBox.setText("Todos los campos necesitan un nombre.");
         msgBox.exec();
     } else {
-        close();
+        QDialog::accept();
     }
 }
