@@ -22,9 +22,9 @@ void Controller::getDatabases() {
     std::ifstream myFile;
     myFile.open(filename_);
 
-    Database db;
-    DataTemplate ds;
     while (myFile.peek() != EOF) {
+        Database db;
+        DataTemplate ds;
         std::string line;
 
         // Obtener nombre de la base de datos

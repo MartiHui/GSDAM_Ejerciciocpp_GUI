@@ -7,16 +7,15 @@
 
 EntryCreator::EntryCreator(DataTemplate *dt, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::EntryCreator)
-{
+    ui(new Ui::EntryCreator) {
     ui->setupUi(this);
+    ui->fieldsArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); // EL tamaño horizontal no cambiara
     dt_ = dt;
 
     generateFieldsForm();
 }
 
-EntryCreator::~EntryCreator()
-{
+EntryCreator::~EntryCreator() {
     delete ui;
 }
 
@@ -24,10 +23,12 @@ void EntryCreator::generateFieldsForm() {
     delete ui->fieldsArea->takeWidget();
 
     QWidget *container = new QWidget;
-    container->setGeometry(0, 0, 299, 179);
+    container->setGeometry(0, 0, 198, 178);
 
-    Dimensions labelDim(20, 30, 50, 15, 10);
-    Dimensions lineEditDim(80, 30, 100, 15, 10);
+    Dimensions labelDim(20, 10, 150, 15, 30);
+    Dimensions lineEditDim(20, 30, 150, 15, 30);
+    // Indicamos cual es el tamaño que tendra para que genere las scrollbar correctamente
+    container->setMinimumSize(198, labelDim.getPosY(dt_->getNumFields()));
 
     for (int i = 0; i < dt_->getNumFields(); i++) {
         QLabel *label = new QLabel(container);
@@ -47,6 +48,7 @@ void EntryCreator::generateFieldsForm() {
 
 bool EntryCreator::fieldsCorrect() {
     bool allCorrect = true;
+
     for (int i = 0; i < lineEditList_.size(); i++) {
         if (lineEditList_[i]->text() == "") {
             allCorrect = false;
@@ -73,8 +75,7 @@ Data EntryCreator::getEntry() {
 
 
 
-void EntryCreator::accept()
-{
+void EntryCreator::accept() {
     if (!fieldsCorrect()) {
         QMessageBox msgBox;
         msgBox.setText("No has rellenado todos los campos.");

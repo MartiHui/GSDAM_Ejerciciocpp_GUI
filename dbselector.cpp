@@ -9,16 +9,14 @@
 
 DbSelector::DbSelector(Controller *controller, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DbSelector)
-{
+    ui(new Ui::DbSelector) {
     ui->setupUi(this);
     controller_ = controller;
 
     fillCmb();
 }
 
-DbSelector::~DbSelector()
-{
+DbSelector::~DbSelector() {
     delete ui;
 }
 
@@ -40,14 +38,15 @@ int DbSelector::getIdx() {
     return idx_;
 }
 
-void DbSelector::on_addDbBtn_clicked()
-{
+void DbSelector::on_addDbBtn_clicked() {
     DbCreator *dbCreator = new DbCreator(&controller_->databases_);
     dbCreator->show();
+
     if (dbCreator->exec()) {
         Database db = dbCreator->getDatabase();
         controller_->createDatabase(db);
     }
+
     delete dbCreator;
 
     fillCmb();

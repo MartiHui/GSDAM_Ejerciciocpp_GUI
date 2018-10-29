@@ -12,20 +12,17 @@
 
 GUI::GUI(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GUI)
-{
+    ui(new Ui::GUI) {
     ui->setupUi(this);
     controller_ = new Controller;
 }
 
-GUI::~GUI()
-{
+GUI::~GUI() {
     delete ui;
     delete controller_;
 }
 
-void GUI::on_selectDatabaseBtn_clicked()
-{
+void GUI::on_selectDatabaseBtn_clicked() {
     DbSelector *dbs = new DbSelector(controller_);
 
     if (dbs->exec()) {
@@ -52,10 +49,12 @@ void GUI::displayEntries(QVector<Data> &entries) {
 
     for (int i = 0; i < entries.size(); i++) {
         ui->entryList->append(QString::number(i+1) + ":");
+
         for (int j = 0; j < dt.getNumFields(); j++) {
             ui->entryList->append(QString::fromStdString("    " + dt.getField(j).first + ": "
                                                          + entries[i].getInformation(j)));
         }
+
         ui->entryList->append("");
     }
 }
@@ -65,8 +64,7 @@ void GUI::displayAllEntries() {
     displayEntries(entries);
 }
 
-void GUI::on_newEntryBtn_clicked()
-{
+void GUI::on_newEntryBtn_clicked() {
     if (controller_->currentDatabase_) {
         DataTemplate dt = controller_->currentDatabase_->getTemplate();
         EntryCreator *ec = new EntryCreator(&dt);
@@ -83,8 +81,7 @@ void GUI::on_newEntryBtn_clicked()
     }
 }
 
-void GUI::on_showEntriesBtn_clicked()
-{
+void GUI::on_showEntriesBtn_clicked() {
     if (controller_->currentDatabase_) {
         displayAllEntries();
     } else {
@@ -92,8 +89,7 @@ void GUI::on_showEntriesBtn_clicked()
     }
 }
 
-void GUI::on_searchEntryBtn_clicked()
-{
+void GUI::on_searchEntryBtn_clicked() {
     if (controller_->currentDatabase_) {
         SearchEntry *se = new SearchEntry(controller_->currentDatabase_);
 

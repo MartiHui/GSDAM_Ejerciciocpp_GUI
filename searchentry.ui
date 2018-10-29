@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>106</height>
+    <width>330</width>
+    <height>90</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Buscar entrada</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>30</y>
-     <width>81</width>
-     <height>61</height>
+     <x>230</x>
+     <y>20</y>
+     <width>80</width>
+     <height>60</height>
     </rect>
    </property>
    <property name="orientation">
@@ -32,20 +32,20 @@
   <widget class="QComboBox" name="fieldsCmb">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>20</x>
      <y>20</y>
-     <width>191</width>
-     <height>22</height>
+     <width>190</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>
   <widget class="QLineEdit" name="searchLine">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>60</y>
-     <width>191</width>
-     <height>21</height>
+     <x>20</x>
+     <y>50</y>
+     <width>190</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

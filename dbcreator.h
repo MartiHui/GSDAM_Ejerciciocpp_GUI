@@ -38,8 +38,8 @@ private:
     std::vector<Database> *databases_;
 
     void generateFieldsForm(int numFields);
-    void cleanScrollArea();
-    bool fieldsCorrect();
+    void cleanScrollArea(); // Borramos los Widgets generados en el QScrollArea
+    bool fieldsCorrect(); // Comprobamos si se han rellenado todos los campos correctamente
 };
 
 #endif // DBCREATOR_H

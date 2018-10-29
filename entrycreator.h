@@ -33,7 +33,7 @@ private:
     DataTemplate *dt_;
 
     void generateFieldsForm();
-    bool fieldsCorrect();
+    bool fieldsCorrect(); // Comprobamos si se han rellenado todos los campos
 };
 
 #endif // ENTRYCREATOR_H

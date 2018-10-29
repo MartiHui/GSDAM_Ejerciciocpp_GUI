@@ -5,8 +5,7 @@
 
 SearchEntry::SearchEntry(Database *ds, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SearchEntry)
-{
+    ui(new Ui::SearchEntry) {
     ui->setupUi(this);
     ds_ = ds;
 
@@ -15,8 +14,7 @@ SearchEntry::SearchEntry(Database *ds, QWidget *parent) :
     }
 }
 
-SearchEntry::~SearchEntry()
-{
+SearchEntry::~SearchEntry() {
     delete ui;
 }
 
@@ -31,8 +29,7 @@ std::vector<Data> SearchEntry::searchEntries() {
     return ds_->searchEntries(idx, word);
 }
 
-void SearchEntry::on_fieldsCmb_currentIndexChanged(int index)
-{
+void SearchEntry::on_fieldsCmb_currentIndexChanged(int index) {
     setMaxLengthLineEdit(index);
 }
 

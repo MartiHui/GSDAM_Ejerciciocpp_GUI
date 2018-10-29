@@ -14,21 +14,18 @@
 
 DbCreator::DbCreator(std::vector<Database> *databases, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DbCreator)
-{
+    ui(new Ui::DbCreator) {
     databases_ = databases;
 
     ui->setupUi(this);
     generateFieldsForm(1);
 }
 
-DbCreator::~DbCreator()
-{
+DbCreator::~DbCreator() {
     delete ui;
 }
 
-void DbCreator::on_numFields_valueChanged(int arg1)
-{
+void DbCreator::on_numFields_valueChanged(int arg1) {
     generateFieldsForm(arg1);
 }
 
@@ -36,7 +33,8 @@ void DbCreator::generateFieldsForm(int numFields) {
     cleanScrollArea();
 
     QWidget *container = new QWidget();
-    container->setGeometry(0, 0, 298, 273);
+    container->setGeometry(0, 0, 308, 273);
+
     QLabel *label1 = new QLabel(container);
     label1->setGeometry(80, 10, 100, 15);
     label1->setText("Nombre");
@@ -78,14 +76,16 @@ void DbCreator::cleanScrollArea() {
 Database DbCreator::getDatabase() {
     Database db;
     DataTemplate dt;
-
+    // Obtenemos el nombre de la base de datos
     db.setDatabaseName(ui->dbName->text().toStdString());
-
+    // Obtenemos el número de campos
     int num = ui->numFields->value();
     dt.setNumFields(num);
+    // Obtenemos el nombre y longitud de cada campo
     for (int i = 0; i < num; i++) {
         dt.addField(lineEditList_[i]->text().toStdString(), spinBoxList_[i]->value());
     }
+
     db.setTemplate(dt);
 
     return db;
@@ -93,6 +93,7 @@ Database DbCreator::getDatabase() {
 
 bool DbCreator::fieldsCorrect() {
     bool allCorrect = true;
+
     for (int i = 0; i < ui->numFields->value(); i++) {
         if (lineEditList_[i]->text() == "") {
             allCorrect = false;

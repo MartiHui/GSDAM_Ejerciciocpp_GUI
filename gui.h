@@ -37,7 +37,8 @@ private:
     void displayDbData();
     void displayEntries(QVector<Data> &entries);
     void displayAllEntries();
-    void noDatabaseAlert();
+    void noDatabaseAlert(); // Avisamos en caso de que se intente realizar alguna accion sobre la base de datos
+                            // cuando aun no ha seleccionado alguna base de datos
 };
 
 #endif // GUI_H

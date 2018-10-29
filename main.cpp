@@ -4,26 +4,18 @@
 
 int main(int argc, char *argv[])
 {
-//    QString mode = argv[1];
+    QString mode = argv[1];
 
-//    if (mode == "consola") {
-//        Interface* interface = new Interface;
-//            interface->mainMenu();
+    if (mode == "consola") {
+        Interface* interface = new Interface;
+        interface->mainMenu();
+    } else if (mode == "gui") {
+        QApplication a(argc, argv);
+        GUI w;
+        w.show();
 
-//            //delete interface; <- crashea el programa y no se porque
-//    } else if (mode == "gui") {
-//        QApplication a(argc, argv);
-//        GUI w;
-//        w.show();
+        return a.exec();
+    }
 
-//        return a.exec();
-//    }
-
-//    return 0;
-
-    QApplication a(argc, argv);
-    GUI w;
-    w.show();
-
-    return a.exec();
+    return 0;
 }
